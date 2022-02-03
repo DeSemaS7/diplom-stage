@@ -8,3 +8,10 @@ terraform {
     }
   }
 }
+
+provider "yandex" {
+  token     = "<OAuth>"
+  cloud_id  = "b1ge9kc6o4mjqkq8g442"
+
+}
+
