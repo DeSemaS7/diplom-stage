@@ -9,8 +9,9 @@ terraform {
   }
 }
 
+
 provider "yandex" {
-  token     = TF_VAR.yc-token
+  token     = var.yc-token
   folder_id = "b1grcnk7hrc2350cime9"
   cloud_id  = "b1ge9kc6o4mjqkq8g442"
 
