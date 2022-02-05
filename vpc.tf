@@ -14,8 +14,8 @@ resource "yandex_vpc_subnet" "public-b" {
   network_id     = yandex_vpc_network.terra_network.id
   v4_cidr_blocks = ["192.168.11.0/24"]
 }
-resource "yandex_vpc_subnet" "public-c" {
-  name           = "public-c"
+resource "yandex_vpc_subnet" "public-d" {
+  name           = "public-d"
   zone           = "ru-central1-c"
   network_id     = yandex_vpc_network.terra_network.id
   v4_cidr_blocks = ["192.168.12.0/24"]
