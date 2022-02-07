@@ -1,11 +1,11 @@
-resource "yandex_iam_service_account" "k8s-manager" {
-  name        = "k8s-manager"
+resource "yandex_iam_service_account" "k8s-admin" {
+  name        = "k8s-admin"
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "k8s-editor" {
   folder_id = "${yandex_vpc_network.terra_network.folder_id}"
   role = "editor"
-  member = "serviceAccount:${yandex_iam_service_account.k8s-manager.id}"
+  member = "serviceAccount:${yandex_iam_service_account.k8s-admin.id}"
   depends_on = [yandex_vpc_network.terra_network]
 }
 
@@ -46,8 +46,8 @@ resource "yandex_kubernetes_cluster" "first-cluster" {
     }
   }
 
-  service_account_id      = "${yandex_iam_service_account.k8s-manager.id}"
-  node_service_account_id = "${yandex_iam_service_account.k8s-manager.id}"
+  service_account_id      = "${yandex_iam_service_account.k8s-admin.id}"
+  node_service_account_id = "${yandex_iam_service_account.k8s-admin.id}"
 
   release_channel = "STABLE"
   depends_on = [yandex_resourcemanager_folder_iam_member.k8s-editor]
