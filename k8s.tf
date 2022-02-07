@@ -61,7 +61,7 @@ resource "yandex_kubernetes_node_group" "k8s-nodes" {
 
     network_interface {
       nat                = true
-      subnet_ids         = ["${yandex_vpc_subnet.network-a.id}"]
+      subnet_ids         = ["${yandex_vpc_subnet.network-a.id}","${yandex_vpc_subnet.network-b.id}","${yandex_vpc_subnet.network-c.id}"]
     }
 
     resources {
@@ -75,25 +75,32 @@ resource "yandex_kubernetes_node_group" "k8s-nodes" {
     }
 
     scheduling_policy {
-      preemptible = false
+      preemptible = true
     }
 
     container_runtime {
       type = "containerd"
     }
+    metadata = {
+      ssh-keys          = "${file("pubkey.txt")}"
+      }
   }
 
   scale_policy {
-    auto_scale {
-      initial = 1
-      max = 4
-      min = 1
+    fixed_scale {
+      size = 3
     }
   }
 
   allocation_policy {
     location {
-      zone = "ru-central1-a"
+      zone = "${yandex_vpc_subnet.network-a.zone}"
+    }
+    location {
+      zone = "${yandex_vpc_subnet.network-b.zone}"
+    }
+	location {
+      zone = "${yandex_vpc_subnet.network-c.zone}"
     }
   }
 
