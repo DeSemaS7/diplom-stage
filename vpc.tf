@@ -20,4 +20,5 @@ resource "yandex_vpc_subnet" "public-c" {
   zone           = "ru-central1-c"
   network_id     = yandex_vpc_network.terra_network.id
   v4_cidr_blocks = ["192.168.12.0/24"]
+  cout = "${terraform.workspace == stage ? 1 : 0}"
 }
