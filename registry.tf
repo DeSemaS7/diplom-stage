@@ -1,9 +1,9 @@
 resource "yandex_container_registry" "my-registry" {
   name      = "my-registry"
 }
-resource "yandex_container_registry_iam_binding" "pusher" {
+resource "yandex_container_registry_iam_binding" "editor" {
   registry_id = yandex_container_registry.my-registry.id
-  role        = "container-registry.images.pusher"
+  role        = "editor"
 
   members = [
     "system:allUsers",
