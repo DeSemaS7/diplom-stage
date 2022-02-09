@@ -1,6 +1,8 @@
 output "master_ext_address" {
   value = yandex_kubernetes_cluster.first-cluster.master[0].external_v4_address
 }
-output "master_ext_endpoint" {
-  value = yandex_kubernetes_cluster.first-cluster.master[0].external_v4_endpoint
+output "registry_id" {
+  value = yandex_container_registry.my-registry.id
 }
+
+
