@@ -9,7 +9,7 @@ resource "yandex_resourcemanager_folder_iam_member" "k8s-editor" {
   depends_on = [yandex_vpc_network.terra_network]
 }
 
-resource "yandex_kubernetes_cluster" "first-cluster" {
+resource "yandex_kubernetes_cluster" "stage-cluster" {
   name        = "first-cluster"
     network_id = "${yandex_vpc_network.terra_network.id}"
 
@@ -53,7 +53,7 @@ resource "yandex_kubernetes_cluster" "first-cluster" {
   depends_on = [yandex_resourcemanager_folder_iam_member.k8s-editor]
 }
 resource "yandex_kubernetes_node_group" "k8s-nodes" {
-  cluster_id  = "${yandex_kubernetes_cluster.first-cluster.id}"
+  cluster_id  = "${yandex_kubernetes_cluster.stage-cluster.id}"
   name        = "k8s-nodes"
 
   instance_template {
