@@ -10,7 +10,7 @@ resource "yandex_resourcemanager_folder_iam_member" "k8s-editor" {
 }
 
 resource "yandex_kubernetes_cluster" "stage-cluster" {
-  name        = "first-cluster"
+  name        = "stage-cluster"
     network_id = "${yandex_vpc_network.terra_network.id}"
 
   master {
