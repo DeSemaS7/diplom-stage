@@ -3,3 +3,5 @@
 <br>3. Собрал простое приложение с nginx-ом, которое отвечает каритнкой и именем пода, на котором крутится. докерфал положил сюда : https://github.com/DeSemaS7/diplom-myapp
 <br>4. Через helm установил в кластер nginx-ingress-controller и через qbec описал деплоймент приложения и сервиса для доступа снаружи. репа:  https://github.com/DeSemaS7/diplom-k8s  сслыка на приложение: http://myapp.itsupp24.ru/
 <br>5. Задеплоил для мониторинга стек kube-prometheus.  ссылка на веб-интерфейс: http://grafana.itsupp24.ru/  (basic auth: netology/netology, creds: admin/admin)
+<br>6. Настроил CI/CD через облачный гитлаб. для этого установил в кластер gitlab agent, далее через helm описал приложение и перенёс его в репозиторий гитлаба. пайплан описан таким образом что при изменении приложения у деплоймента меняется образ на последний собранный.
+Ссылка на проект: https://gitlab.com/desema.s7/diplom-myapp
